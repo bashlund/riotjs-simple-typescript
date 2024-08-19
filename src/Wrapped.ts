@@ -23,9 +23,17 @@ export class Wrapped<ComponentClass extends Base<any, any>> {
     public component: ComponentClass;
     protected onRenderFn?: () => void;
 
+    /**
+     * @param c the component class
+     * @param html of the view
+     * @param props
+     * @param stateController optionally set the StateController instance on the component
+     * @param router optionally set the Router instance on the component
+     * @param init set to false if wanting to manually call init()
+     */
     constructor(c: { new (): ComponentClass }, html: string, props: ComponentClass["props"],
         stateController?: StateController,
-        router?: Router)
+        router?: Router, init: boolean = true)
     {
         const stripped = this.stripTemplate(html);
 
@@ -80,11 +88,20 @@ export class Wrapped<ComponentClass extends Base<any, any>> {
         //@ts-expect-error readonly property
         component.root = document.documentElement;
 
-        component.onBeforeMount?.(component.props, component.state);
-
-        component.onMounted?.(component.props, component.state);
-
         this.component = component;
+
+        if (init) {
+            this.init();
+        }
+    }
+
+    /**
+     * Init the component if not already when created.
+     */
+    public init() {
+        this.component.onBeforeMount?.(this.component.props, this.component.state);
+
+        this.component.onMounted?.(this.component.props, this.component.state);
     }
 
     protected render() {
