@@ -1,20 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-    //RiotComponent,
-} from "riot";
-
-import {
     Base,
 } from "./Base";
 
 import {StateController} from "riotjs-simple-state";
-import {Router} from "riotjs-simple-router";
+
+import {
+    Router,
+    RouterCtrl,
+} from "riotjs-simple-router";
+
 import {parseHTML} from "linkedom";
 
 export {
     StateController,
     Router,
+    RouterCtrl,
 };
 
 export class Wrapped<ComponentClass extends Base<any, any>> {
@@ -50,7 +52,7 @@ export class Wrapped<ComponentClass extends Base<any, any>> {
 
             component.onUpdated?.(component.props, component.state);
 
-            return component;// as RiotComponent<any, any>;
+            return component;
         };
 
         //@ts-expect-error readonly property
@@ -72,7 +74,7 @@ export class Wrapped<ComponentClass extends Base<any, any>> {
             component.onBeforeUnmount?.(component.props, component.state);
             component.onUnmounted?.(component.props, component.state);
 
-            return component;// as RiotComponent<any, any>;
+            return component;
         };
 
         //@ts-expect-error readonly property

@@ -18,7 +18,7 @@
     },
     "dependencies": {
         "linkedom": "^0.18.4",
-        "riotjs-simple-router": "^0.2.0",
-        "riotjs-simple-state": "^0.2.0"
+        "riotjs-simple-router": "^0.3.0",
+        "riotjs-simple-state": "^0.3.0"
     }
 }
