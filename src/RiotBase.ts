@@ -1,3 +1,7 @@
+/**
+ * Extend controllers from this base class to give them the riotjs types.
+ */
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   SlotBindingData,
@@ -8,16 +12,10 @@ import {
     RiotComponentsMap,
 } from "riot";
 
-import {StateController} from "riotjs-simple-state";
-import {Router} from "riotjs-simple-router";
-
-export class Base<Props, State> {
-    //@ts-expect-error set by the outside
-    stateController: StateController;
-
-    //@ts-expect-error set by the outside
-    router: Router;
-
+/**
+ * Base class to extend for riot controllers.
+ */
+export class RiotBase<Props, State> implements RiotComponent<Props, State> {
     //@ts-expect-error set by the outside
     readonly props: Props;
 
@@ -56,6 +54,7 @@ export class Base<Props, State> {
         throw new Error("$$ expected to be overridden");
     }
 
+    // state handling methods
     shouldUpdate?(newProps: Props, oldProps: Props): boolean;
 
     // lifecycle methods

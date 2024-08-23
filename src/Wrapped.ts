@@ -1,25 +1,16 @@
+/**
+* Use this class for unit testing controllers.
+*/
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-    Base,
-} from "./Base";
-
-import {StateController} from "riotjs-simple-state";
-
-import {
-    Router,
-    RouterCtrl,
-} from "riotjs-simple-router";
+    RiotBase,
+} from "./RiotBase";
 
 import {parseHTML} from "linkedom";
 
-export {
-    StateController,
-    Router,
-    RouterCtrl,
-};
-
-export class Wrapped<ComponentClass extends Base<any, any>> {
+export class Wrapped<ComponentClass extends RiotBase<any, any>> {
     public component: ComponentClass;
     protected onRenderFn?: () => void;
 
@@ -27,13 +18,13 @@ export class Wrapped<ComponentClass extends Base<any, any>> {
      * @param c the component class
      * @param html of the view
      * @param props
-     * @param stateController optionally set the StateController instance on the component
-     * @param router optionally set the Router instance on the component
-     * @param init set to false if wanting to manually call init()
+     * @param mount set to false if wanting to manually call mount()
      */
-    constructor(c: { new (): ComponentClass }, html: string, props: ComponentClass["props"],
-        stateController?: StateController,
-        router?: Router, init: boolean = true)
+    constructor(
+        c: { new (): ComponentClass },
+        html: string,
+        props: ComponentClass["props"],
+        mount: boolean = true)
     {
         const stripped = this.stripTemplate(html);
 
@@ -68,14 +59,6 @@ export class Wrapped<ComponentClass extends Base<any, any>> {
 
         component.state = {};
 
-        if (stateController) {
-            component.stateController = stateController;
-        }
-
-        if (router) {
-            component.router = router;
-        }
-
         component.mount = function() { throw new Error("component.mount not support in test") };
 
         component.unmount = (keepRootElement?: boolean) => {
@@ -90,15 +73,15 @@ export class Wrapped<ComponentClass extends Base<any, any>> {
 
         this.component = component;
 
-        if (init) {
-            this.init();
+        if (mount) {
+            this.mount();
         }
     }
 
     /**
-     * Init the component if not already when created.
+     * Mount the component if not already mounted when created.
      */
-    public init() {
+    public mount() {
         this.component.onBeforeMount?.(this.component.props, this.component.state);
 
         this.component.onMounted?.(this.component.props, this.component.state);

@@ -1,2 +1,2 @@
-export * from "./src/Base";
+export * from "./src/RiotBase";
 export * from "./src/Wrapped";
