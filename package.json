@@ -1,6 +1,24 @@
 {
     "name": "riotjs-simple-typescript",
-    "version": "0.4.0",
+    "version": "0.4.1",
+    "description": "A way to work with TypeScript in RiotJS which also works fine with unit testing",
+    "keywords": [
+        "typescript",
+        "test",
+        "mocha",
+        "jest",
+        "riotjs",
+        "riot"
+    ],
+    "author": "Thomas Backlund",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bashlund/riotjs-simple-typescript.git"
+    },
+    "bugs": {
+        "url": "https://github.com/bashlund/riotjs-simple-typescript/issues"
+    },
     "main": "./build/index.js",
     "scripts": {
         "tsc": "npx tsc",
