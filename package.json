@@ -1,6 +1,6 @@
 {
     "name": "riotjs-simple-typescript",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "description": "A way to work with TypeScript in RiotJS which also works fine with unit testing",
     "keywords": [
         "typescript",
