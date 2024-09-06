@@ -25,10 +25,14 @@
         "build": "npx tsc",
         "lint": "npx eslint ./src/*.ts"
     },
+    "bin": {
+        "new-riot": "build/src/tools/new-riot.js"
+    },
     "devDependencies": {
         "@eslint/js": "^9.9.0",
         "@riotjs/dom-bindings": "^9.0.4",
         "@types/eslint__js": "^8.42.3",
+        "@types/node": "^22.5.3",
         "eslint": "^9.9.0",
         "riot": "^9.2.2",
         "typescript": "^5.5.4",
