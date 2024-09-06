@@ -165,6 +165,26 @@ Run the tests with the compiler option set as:
 TS_NODE_COMPILER_OPTIONS='{"allowImportingTsExtensions": true}' npx mocha -r ts-node/register
 ```
 
+## cli-tool
+
+There is a cli-tool called `riot-new` which can be used to instantiate stubs of components and modal
+components.
+
+```sh
+npx riot-new component my-component ./components
+```
+
+```sh
+npx riot-new modal my-modal ./components
+```
+
+Modals cen be opened as:
+
+```ts
+MyModal.open(props[, options]).then( result => ... );
+
+```
+
 ## License
 
 MIT
