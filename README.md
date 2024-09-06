@@ -164,3 +164,7 @@ Run the tests with the compiler option set as:
 ```sh
 TS_NODE_COMPILER_OPTIONS='{"allowImportingTsExtensions": true}' npx mocha -r ts-node/register
 ```
+
+## License
+
+MIT
